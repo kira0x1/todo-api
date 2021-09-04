@@ -27,7 +27,10 @@ async function signin(req, res) {
     const user = await User.findOne().byUsername(req.body.username);
 
     if (!user) {
-      res.status(404).send({ message: "User not found." });
+      res.status(401).send({
+        accessToken: null,
+        message: "Invalid credentials.",
+      });
       return;
     }
 
@@ -35,7 +38,7 @@ async function signin(req, res) {
     if (!passwordValid) {
       res.status(401).send({
         accessToken: null,
-        message: "Invalid password.",
+        message: "Invalid credentials.",
       });
       return;
     }
