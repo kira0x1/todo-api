@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const chalk = require("chalk");
 const authRouter = require("./routes/authRoute");
+const userRoute = require("./routes/userRoute");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth/", authRouter);
+app.use("/api/test/", userRoute);
 
 app.listen(PORT, () => {
   console.log(
